@@ -86,19 +86,56 @@ body {
   outline: none;
 }
 
-#newsdiv {
+#allnews {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
   width: 33%;
   height: 40vh;
   max-height: 500px;
+}
+
+#newsselection {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  width: 70%;
+}
+
+#newsselection label {
+  flex: 1;
+  text-align: center;
+  background-color: #333;
+  border: 1px solid #555;
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+  position: relative;
+  transition: background-color 0.3s ease;
+  border-radius: 50px;
+}
+
+#newsselection label:hover {
+  background-color: #555;
+}
+
+#newsselection input[type="radio"] {
+  display: none;
+}
+
+.newsdivs {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 800px;
   overflow-y: auto;
 }
 
-#newsdiv {
+.newsdivs {
   --sb-track-color: #232e33;
   --sb-thumb-color: #007bff;
   --sb-size: 10px;
@@ -106,16 +143,16 @@ body {
   scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
 
-#newsdiv::-webkit-scrollbar {
+.newsdivs::-webkit-scrollbar {
   width: var(--sb-size);
 }
 
-#newsdiv::-webkit-scrollbar-track {
+.newsdivs::-webkit-scrollbar-track {
   background: var(--sb-track-color);
   border-radius: 10px;
 }
 
-#newsdiv::-webkit-scrollbar-thumb {
+.newsdivs::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 10px;
 }
@@ -125,7 +162,7 @@ body {
   width: 100%;
   transition: background-color 0.3s ease;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
   margin-top: 2px;
@@ -143,6 +180,19 @@ body {
 
 .newstile:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.articleImg {
+  width: 50%;
+  height: auto;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+hr {
+  margin-top: 20px;
+  width: 95%;
 }
 
 #content {

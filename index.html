@@ -87,7 +87,31 @@
     </div>
 
     <div id="content">
-      <div id="newsdiv"></div>
+      <div id="allnews">
+        <div id="newsselection">
+          <label id="localNewsLabel">
+            <input
+              value="value-1"
+              name="value-radio"
+              id="value-1"
+              type="radio"
+            />
+            <span>Local News</span>
+          </label>
+          <label id="globalNewsLabel">
+            <input
+              value="value-2"
+              name="value-radio"
+              id="value-2"
+              type="radio"
+            />
+            <span>Global News</span>
+          </label>
+        </div>
+        <div class="newsdivs" id="newsdiv"></div>
+        <div class="newsdivs" id="worldnewsdiv" style="display: none"></div>
+      </div>
+
       <div id="socialsdiv">
         <div class="up">
           <button class="card1" id="card1" title="Instagram">
@@ -179,6 +203,7 @@
     <script src="/script/weather.js"></script>
     <script src="/script/user.js"></script>
     <script src="/script/news.js"></script>
+    <script src="/script/news-cat-change.js"></script>
     <script src="/script/socials.js"></script>
     <script src="/script/bookmarks.js"></script>
     <script src="/script/notepad.js"></script>
