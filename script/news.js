@@ -1,7 +1,35 @@
 const API = "pub_28833ead25450dcd6a63f5f8ac39b859b0bb2";
 const LOCALNEWS_STORAGE_KEY = "localnewsData";
 const GLOBALNEWS_STORAGE_KEY = "globalnewsData";
-const STORAGE_EXPIRATION_HOURS = 3;
+const STORAGE_EXPIRATION_HOURS = 2; // Changed to 2 hours
+
+// Function to check if the cookie exists
+function checkCookie() {
+  const cookieExists = getCookie("newsCookie");
+  if (!cookieExists) {
+    // If the cookie doesn't exist, create a new one with a 2-hour expiration
+    const expirationDate = new Date();
+    expirationDate.setTime(
+      expirationDate.getTime() + STORAGE_EXPIRATION_HOURS * 60 * 60 * 1000
+    );
+    document.cookie = `newsCookie=1; expires=${expirationDate.toUTCString()}`;
+  }
+}
+
+// Function to get a specific cookie by name
+function getCookie(name) {
+  const cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith(name + "=")) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Call the checkCookie function when the page loads
+checkCookie();
 
 function fetchNews(countryCode, isGlobal) {
   const storageKey = isGlobal ? GLOBALNEWS_STORAGE_KEY : LOCALNEWS_STORAGE_KEY;
@@ -17,7 +45,7 @@ function fetchNews(countryCode, isGlobal) {
   } else {
     const newsUrl = isGlobal
       ? `https://newsdata.io/api/1/news?apikey=${API}&language=en,pl&category=top`
-      : `https://newsdata.io/api/1/news?apikey=${API}&country=${countryCode}&category=top`;
+      : `https://newsdata.io/api/1/news?apikey=${API}&country=${countryCode}&category=business,politics,sports,technology,top`;
 
     fetch(newsUrl)
       .then((response) => response.json())
@@ -112,6 +140,6 @@ fetch(reverseGeocodeUrl)
   .then((response) => response.json())
   .then((data) => {
     const countryCode = data.countryCode;
-    fetchNews(countryCode, false); // Fetch local news
-    fetchNews(null, true); // Fetch global news
+    fetchNews(countryCode, false);
+    fetchNews(null, true);
   });
