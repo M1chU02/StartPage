@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="icon" type="image/x-icon" href="/img/home-favicon.png" />
 
     <link
@@ -23,6 +22,8 @@
     <link rel="stylesheet" href="/style/socialsstyle.css" />
     <link rel="stylesheet" href="/style/bookmarksstyle.css" />
     <link rel="stylesheet" href="style/notepadstyle.css" />
+    <link rel="stylesheet" href="/style/settingsstyle.css" />
+    <link rel="stylesheet" id="themestylesheet" href="/themes/dark-mode.css" />
 
     <title>HomePage</title>
   </head>
@@ -58,8 +59,8 @@
     </div>
 
     <div id="bookmarksdiv">
-      <h2>Bookmarks</h2>
-      <div id="bookmark-modal" style="display: none">
+      <h1>Bookmarks</h1>
+      <div id="bookmark-modal">
         <div id="bookmark-form-container">
           <button id="close-button">&times;</button>
           <form id="bookmark-form">
@@ -101,6 +102,18 @@
             />
             <span>Local News</span>
           </label>
+          <button id="refreshNewsBtn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+            >
+              <use xlink:href="/svg/newssvg/refresh.svg#refresh"></use>
+            </svg>
+          </button>
           <label id="globalNewsLabel">
             <input
               value="value-2"
@@ -112,69 +125,120 @@
           </label>
         </div>
         <div class="newsdivs" id="newsdiv"></div>
-        <div class="newsdivs" id="worldnewsdiv" style="display: none"></div>
+        <div class="newsdivs" id="worldnewsdiv"></div>
       </div>
 
-      <div id="socialsdiv">
-        <div class="up">
-          <button class="card1" id="card1" title="Instagram">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0,0,48,48"
-              width="30px"
-              height="30px"
-              class="instagram"
-            >
-              <use xlink:href="/svg/instagram.svg#instagram" />
-            </svg>
-          </button>
-          <button class="card2" id="card2" title="Twitter">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 48 48"
-              width="30px"
-              height="30px"
-              class="twitter"
-            >
-              <use xlink:href="/svg/twitter.svg#twitter" />
-            </svg>
-          </button>
-        </div>
-        <button class="spotifycard" id="spotifycard" title="Spotify">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="40px"
-            height="40px"
-            viewBox="0 0 50 50"
-            class="spotify"
-          >
-            <use xlink:href="/svg/spotify.svg#spotify" />
-          </svg>
-        </button>
+      <div id="socials-apps">
+        <div id="socialsdiv">
+          <div class="up">
+            <button class="card1" id="card1" title="Instagram">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0,0,48,48"
+                width="30px"
+                height="30px"
+                class="instagram"
+              >
+                <use xlink:href="/svg/socialsvg/instagram.svg#instagram" />
+              </svg>
+            </button>
+            <button class="card2" id="card2" title="Twitter">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                width="30px"
+                height="30px"
+                class="twitter"
+              >
+                <use xlink:href="/svg/socialsvg/twitter.svg#twitter" />
+              </svg>
+            </button>
+          </div>
 
-        <div class="down">
-          <button class="card3" id="card3" title="Github">
+          <button class="spotifycard" id="spotifycard" title="Spotify">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 48 48"
-              width="30px"
-              height="30px"
-              class="github"
+              x="0px"
+              y="0px"
+              width="40px"
+              height="40px"
+              viewBox="0 0 50 50"
+              class="spotify"
             >
-              <use xlink:href="/svg/github.svg#github" />
+              <use xlink:href="/svg/socialsvg/spotify.svg#spotify" />
             </svg>
           </button>
-          <button class="card4" id="card4" title="Youtube">
+
+          <div class="down">
+            <button class="card3" id="card3" title="Github">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                width="30px"
+                height="30px"
+                class="github"
+              >
+                <use xlink:href="/svg/socialsvg/github.svg#github" />
+              </svg>
+            </button>
+            <button class="card4" id="card4" title="Youtube">
+              <svg
+                height="30px"
+                width="30px"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                class="youtube"
+              >
+                <use xlink:href="/svg/socialsvg/youtube.svg#youtube" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="appsdiv">
+          <button id="timerBtn" title="Timer" class="appbutton">
             <svg
-              height="30px"
-              width="30px"
-              viewBox="0 0 48 48"
+              height="36px"
+              width="36px"
               xmlns="http://www.w3.org/2000/svg"
-              class="youtube"
+              viewBox="0 0 296.228 296.228"
+              class="appsvg"
             >
-              <use xlink:href="/svg/youtube.svg#youtube" />
+              <use xlink:href="/svg/appsvg/timer.svg#timer" />
+            </svg>
+          </button>
+          <button id="calendarBtn" title="Calendar" class="appbutton">
+            <svg
+              height="36px"
+              width="36px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="appsvg"
+            >
+              <use xlink:href="/svg/appsvg/calendar.svg#calendar" />
+            </svg>
+          </button>
+          <button id="calculatorBtn" title="Calculator" class="appbutton">
+            <svg
+              height="36px"
+              width="36px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="appsvg"
+            >
+              <use xlink:href="/svg/appsvg/calculator.svg#calculator" />
+            </svg>
+          </button>
+          <button id="translatorBtn" title="Translator" class="appbutton">
+            <svg
+              height="36px"
+              width="36px"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 24 24"
+              class="appsvg"
+            >
+              <use xlink:href="/svg/appsvg/translator.svg#translator" />
             </svg>
           </button>
         </div>
@@ -183,27 +247,26 @@
       <div id="notepaddiv">
         <div id="notepad-navbar">
           <div id="note-list"></div>
-          <button id="add-note-btn" onclick="addNote()">Add Note</button>
+          <button id="add-note-btn">Add Note</button>
         </div>
         <div
           id="notepadarea"
           contenteditable="true"
-          oninput="handleInput()"
           data-placeholder="Make a note..."
         ></div>
         <div id="editor-buttons">
           <div id="basic-text-editor">
-            <button id="notepadboldbtn" onclick="makeBold()">
+            <button id="notepadboldbtn">
               <strong>B</strong>
             </button>
-            <button id="notepaditalicbtn" onclick="makeItalic()">
+            <button id="notepaditalicbtn">
               <em>I</em>
             </button>
-            <button id="notepadunderlinebtn" onclick="makeUnderline()">
+            <button id="notepadunderlinebtn">
               <u>U</u>
             </button>
             <label for="fontSize">Font Size:</label>
-            <select id="fontSize" onchange="changeFontSize(this.value)">
+            <select id="fontSize">
               <option value="16px">16px</option>
               <option value="20px">20px</option>
               <option value="24px">24px</option>
@@ -213,12 +276,8 @@
             </select>
           </div>
           <div id="advanced-text-editor">
-            <button id="notepadlistbtn" onclick="addList()">
-              &#8226; List
-            </button>
-            <button id="notepadcheckbtn" onclick="addCheckbox()">
-              ☑ Checkbox
-            </button>
+            <button id="notepadlistbtn">&#8226; List</button>
+            <button id="notepadcheckbtn">☑ Checkbox</button>
           </div>
         </div>
         <div id="savenotesbtn">
@@ -230,6 +289,24 @@
       </div>
     </div>
 
+    <div id="footer">
+      <button id="settingsBtn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          width="20"
+          height="20"
+          viewBox="0 0 50 50"
+          class="settingssvg"
+        >
+          <use xlink:href="/svg/settingssvg/settings.svg#settings" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="spotify-widget"></div>
+
     <script src="/script/search.js"></script>
     <script src="/script/date.js"></script>
     <script src="/script/weather.js"></script>
@@ -240,5 +317,6 @@
     <script src="/script/bookmarks.js"></script>
     <script src="/script/notepad.js"></script>
     <script src="/script/notepad-text-editor.js"></script>
+    <script src="/script/settings.js"></script>
   </body>
 </html>

@@ -8,7 +8,6 @@ window.addEventListener("load", () => {
   document.getElementById("localNewsLabel").style.backgroundColor = "#007bff";
 });
 
-// Add an event listener to the radio buttons
 localNewsRadio.addEventListener("change", function () {
   if (localNewsRadio.checked) {
     newsDiv.style.display = "flex";

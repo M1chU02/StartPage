@@ -1,13 +1,11 @@
 const API = "pub_28833ead25450dcd6a63f5f8ac39b859b0bb2";
 const LOCALNEWS_STORAGE_KEY = "localnewsData";
 const GLOBALNEWS_STORAGE_KEY = "globalnewsData";
-const STORAGE_EXPIRATION_HOURS = 2; // Changed to 2 hours
+const STORAGE_EXPIRATION_HOURS = 2;
 
-// Function to check if the cookie exists
 function checkCookie() {
   const cookieExists = getCookie("newsCookie");
   if (!cookieExists) {
-    // If the cookie doesn't exist, create a new one with a 2-hour expiration
     const expirationDate = new Date();
     expirationDate.setTime(
       expirationDate.getTime() + STORAGE_EXPIRATION_HOURS * 60 * 60 * 1000
@@ -16,7 +14,6 @@ function checkCookie() {
   }
 }
 
-// Function to get a specific cookie by name
 function getCookie(name) {
   const cookies = document.cookie.split(";");
   for (let i = 0; i < cookies.length; i++) {
@@ -28,8 +25,26 @@ function getCookie(name) {
   return false;
 }
 
-// Call the checkCookie function when the page loads
 checkCookie();
+
+const refreshButton = document.getElementById("refreshNewsBtn");
+refreshButton.addEventListener("click", () => {
+  localStorage.removeItem(LOCALNEWS_STORAGE_KEY);
+  localStorage.removeItem(GLOBALNEWS_STORAGE_KEY);
+
+  checkCookie();
+
+  const [lat, lng] = geolocationCookie.split(",");
+  const reverseGeocodeUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`;
+
+  fetch(reverseGeocodeUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      const countryCode = data.countryCode;
+      fetchNews(countryCode, false);
+      fetchNews(null, true);
+    });
+});
 
 function fetchNews(countryCode, isGlobal) {
   const storageKey = isGlobal ? GLOBALNEWS_STORAGE_KEY : LOCALNEWS_STORAGE_KEY;

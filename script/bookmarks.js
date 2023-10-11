@@ -2,6 +2,10 @@ let bookmarks = [];
 
 function addBookmark(url, name, bookmarkBg) {
   bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    url = "http://" + url;
+  }
+
   bookmarks.push({ url, name, bookmarkBg });
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 }
@@ -39,7 +43,15 @@ function showFormModal() {
 function hideFormModal() {
   const modal = document.getElementById("bookmark-modal");
   modal.style.display = "none";
+  renderBookmarks();
 }
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    document.getElementById("bookmark-modal").style.display = "none";
+    renderBookmarks();
+  }
+});
 
 const addButton = document.getElementById("add-button");
 addButton.addEventListener("click", showFormModal);
@@ -57,7 +69,7 @@ modal.addEventListener("click", function (e) {
 const bookmarkForm = document.getElementById("bookmark-form");
 bookmarkForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const url = "http://" + document.getElementById("url").value;
+  const url = document.getElementById("url").value;
   const name = document.getElementById("name").value;
   const bookmarkBg = document.getElementById("bookmarkcolor").value;
 
@@ -147,8 +159,16 @@ function renderBookmarks() {
         .addEventListener("click", function (e) {
           if (e.target === document.getElementById("settings-modal")) {
             document.getElementById("settings-modal").style.display = "none";
+            renderBookmarks();
           }
         });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          document.getElementById("settings-modal").style.display = "none";
+          renderBookmarks();
+        }
+      });
 
       const settingsForm = document.getElementById("settings-form");
       settingsForm.addEventListener("submit", function (e) {

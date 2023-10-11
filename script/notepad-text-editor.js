@@ -1,4 +1,26 @@
-const placeholder = notepadarea.getAttribute("data-placeholder");
+const placeholder = document
+  .getElementById("notepadarea")
+  .getAttribute("data-placeholder");
+
+const notepadboldbtn = document.getElementById("notepadboldbtn");
+const notepaditalicbtn = document.getElementById("notepaditalicbtn");
+const notepadunderlinebtn = document.getElementById("notepadunderlinebtn");
+const fontSize = document.getElementById("fontSize");
+const notepadlistbtn = document.getElementById("notepadlistbtn");
+const notepadcheckbtn = document.getElementById("notepadcheckbtn");
+
+notepadboldbtn.addEventListener("click", makeBold);
+notepaditalicbtn.addEventListener("click", makeItalic);
+notepadunderlinebtn.addEventListener("click", makeUnderline);
+fontSize.addEventListener("change", () => {
+  var selectedValue = this.value;
+  changeFontSize(selectedValue);
+});
+notepadlistbtn.addEventListener("click", addList);
+notepadcheckbtn.addEventListener("click", addCheckbox);
+
+const notepadArea = document.getElementById("notepadarea");
+notepadArea.addEventListener("input", handleInput);
 
 function handleInput() {
   const content = notepadarea.innerHTML;

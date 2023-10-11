@@ -1,12 +1,9 @@
 body {
   margin: 0;
-  background-color: #141414;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: "Gruppo", "Chakra Petch";
   width: 100%;
   height: 100%;
 }
@@ -21,6 +18,86 @@ body {
 .header {
   font-size: 3rem;
   margin: 3px;
+}
+
+#username-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  display: none;
+}
+
+#username-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  box-shadow: none;
+}
+
+#username-form-container form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: 90%;
+}
+
+#username-form-container input[type="text"] {
+  outline: none;
+  border: none;
+  margin: 10px;
+  width: 90%;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+#username-form-container label {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+#username-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+}
+
+#username-form #username-submit-button {
+  padding: 1rem 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 3rem;
+  border: none;
+  cursor: pointer;
+  transition: all 300ms;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+#username-form #username-submit-button:hover {
+  cursor: pointer;
+  transition: 0.5s ease;
 }
 
 #infodiv {
@@ -72,8 +149,6 @@ body {
 }
 
 #searchinput {
-  background-color: #303030;
-  color: white;
   border: none;
   width: 90%;
   max-width: 1000px;
@@ -86,6 +161,15 @@ body {
   outline: none;
 }
 
+#bookmarksdiv {
+  margin-top: 10px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 #allnews {
   display: flex;
   flex-direction: column;
@@ -95,6 +179,7 @@ body {
   width: 33%;
   height: 50vh;
   max-height: 650px;
+  min-width: 600px;
   max-width: 700px;
 }
 
@@ -108,21 +193,27 @@ body {
 #newsselection label {
   flex: 1;
   text-align: center;
-  background-color: #333;
-  border: 1px solid #555;
   padding: 10px;
   cursor: pointer;
-  color: #fff;
   position: relative;
   transition: background-color 0.3s ease;
   border-radius: 50px;
 }
 
-#newsselection label:hover {
-  background-color: #555;
+#newsselection input[type="radio"] {
+  display: none;
 }
 
-#newsselection input[type="radio"] {
+#refreshNewsBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+#worldnewsdiv {
   display: none;
 }
 
@@ -137,11 +228,7 @@ body {
 }
 
 .newsdivs {
-  --sb-track-color: #232e33;
-  --sb-thumb-color: #007bff;
   --sb-size: 10px;
-
-  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
 
 .newsdivs::-webkit-scrollbar {
@@ -149,17 +236,14 @@ body {
 }
 
 .newsdivs::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
   border-radius: 10px;
 }
 
 .newsdivs::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
   border-radius: 10px;
 }
 
 .newstile {
-  color: white;
   width: 100%;
   transition: background-color 0.3s ease;
   display: flex;
@@ -172,15 +256,6 @@ body {
 
 .newstile a {
   text-decoration: none;
-}
-
-.newstile a:link,
-.newstile a:visited {
-  color: white;
-}
-
-.newstile:hover {
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .articleImg {
@@ -204,13 +279,41 @@ hr {
   max-height: 60vh;
 }
 
-#bookmarksdiv {
-  margin-top: 10px;
-  width: 60%;
+#socials-apps {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 33%;
+  height: 50vh;
+  max-height: 650px;
+  min-width: 600px;
+  max-width: 700px;
+}
+
+#socialsdiv {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  width: 100%;
+  height: 75%;
+}
+
+#appsdiv {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 25%;
+  column-gap: 0.5em;
+}
+
+.appbutton {
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 #notepaddiv {
@@ -222,15 +325,14 @@ hr {
   width: 33%;
   height: 50vh;
   max-height: 650px;
+  min-width: 600px;
   max-width: 700px;
 }
 
 #notepadarea {
   width: 100%;
   height: 100%;
-  background-color: #303030;
   border: none;
-  color: white;
   font-size: 36px;
   resize: none;
   border-radius: 20px;
@@ -246,7 +348,6 @@ hr {
 }
 
 #savenotesbtn {
-  font-family: "Gruppo";
   width: 100%;
   height: 10%;
   max-height: 60px;
@@ -255,8 +356,6 @@ hr {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 3rem;
-  background-color: #707070;
-  color: #efefef;
   border: none;
   cursor: pointer;
   transition: all 300ms;
@@ -266,17 +365,11 @@ hr {
 
 #savenotesbtn:hover {
   cursor: pointer;
-  background-color: #458bc2;
-  color: white;
   transition: 0.5s ease;
 }
 
 #notepadarea {
-  --sb-track-color: #232e33;
-  --sb-thumb-color: #007bff;
   --sb-size: 10px;
-
-  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   cursor: auto;
 }
 
@@ -285,12 +378,10 @@ hr {
 }
 
 #notepadarea::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
   border-radius: 10px;
 }
 
 #notepadarea::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
   border-radius: 10px;
 }
 
@@ -304,22 +395,14 @@ hr {
   gap: 0.5rem;
 }
 
-.loader {
-  border: 4px solid rgba(255, 255, 255, 0.6);
-  border-left-color: transparent;
-  border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
-  animation: spin 1s linear infinite;
-  display: none;
+#footer {
+  margin-top: 3rem;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+#settingsBtn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+  border: none;
 }
