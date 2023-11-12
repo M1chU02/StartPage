@@ -1,4 +1,4 @@
-const API = "pub_28833ead25450dcd6a63f5f8ac39b859b0bb2";
+const API = "";
 const LOCALNEWS_STORAGE_KEY = "localnewsData";
 const GLOBALNEWS_STORAGE_KEY = "globalnewsData";
 const STORAGE_EXPIRATION_HOURS = 3;
