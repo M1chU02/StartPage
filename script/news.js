@@ -1,13 +1,11 @@
-const API = "pub_28833ead25450dcd6a63f5f8ac39b859b0bb2";
+const API = "";
 const LOCALNEWS_STORAGE_KEY = "localnewsData";
 const GLOBALNEWS_STORAGE_KEY = "globalnewsData";
-const STORAGE_EXPIRATION_HOURS = 2; // Changed to 2 hours
+const STORAGE_EXPIRATION_HOURS = 2; 
 
-// Function to check if the cookie exists
 function checkCookie() {
   const cookieExists = getCookie("newsCookie");
   if (!cookieExists) {
-    // If the cookie doesn't exist, create a new one with a 2-hour expiration
     const expirationDate = new Date();
     expirationDate.setTime(
       expirationDate.getTime() + STORAGE_EXPIRATION_HOURS * 60 * 60 * 1000
@@ -16,7 +14,6 @@ function checkCookie() {
   }
 }
 
-// Function to get a specific cookie by name
 function getCookie(name) {
   const cookies = document.cookie.split(";");
   for (let i = 0; i < cookies.length; i++) {
@@ -28,7 +25,6 @@ function getCookie(name) {
   return false;
 }
 
-// Call the checkCookie function when the page loads
 checkCookie();
 
 function fetchNews(countryCode, isGlobal) {
